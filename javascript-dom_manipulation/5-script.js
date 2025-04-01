@@ -1,3 +1,3 @@
 document.getElementById('update_header').addEventListener('click', function() {
-    document.getElementById('header').textContent = "New Header!!!";
+    document.querySelector('header').textContent = "New Header!!!";
 });
