@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from typing import Iterable, Sequence, List, Tuple
 """
 Module that provides a function to calculate
 the length of each element in a list
 """
+from typing import Iterable, Sequence, List, Tuple
 
 
 def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
