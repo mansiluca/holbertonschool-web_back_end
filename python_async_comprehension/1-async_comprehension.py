@@ -2,10 +2,11 @@
 """
 Module that provides an async generator that yields a random number
 """
+import typing
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension() -> float:
+async def async_comprehension() -> typing.List[float]:
     """
     Async function that uses async_generator to yield random numbers
     and returns the sum of the first 10 numbers generated
