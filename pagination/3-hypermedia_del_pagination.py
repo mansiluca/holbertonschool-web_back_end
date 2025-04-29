@@ -46,7 +46,7 @@ class Server:
         - data: the actual page of the dataset
         """
 
-        assert type(index) == int and type(page_size) == int
+        assert isinstance(index, type(page_size)) == int
         assert index >= 0 and page_size > 0
 
         dataset = self.indexed_dataset()
