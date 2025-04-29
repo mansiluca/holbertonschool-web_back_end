@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Module that provides a simple helper function
+"""
 import csv
 import math
 from typing import List, Tuple
