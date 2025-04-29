@@ -10,7 +10,8 @@ from typing import List, Dict, Tuple
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Returns a tuple of size two containing a start index and an end index
-    corresponding to the range of indexes to return for the given pagination
+    corresponding to the range of indexes
+    to return for the given pagination
     parameters.
     """
     assert isinstance(page, int) and isinstance(page_size, int)
@@ -52,7 +53,8 @@ class Server:
 
     def get_hyper_index(self, index: int = 0, page_size: int = 10) -> Dict:
         """
-        Returns a dictionary containing the following pagination information:
+        Returns a dictionary containing
+        the following pagination information:
         - index: the current start index
         - next_index: the next index to query with
         - page_size: the current page size
