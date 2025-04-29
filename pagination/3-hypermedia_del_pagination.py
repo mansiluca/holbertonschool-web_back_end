@@ -4,7 +4,20 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
-from typing import List, Dict
+from typing import List, Dict, Tuple
+
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """
+    Returns a tuple of size two containing a start index and an end index
+    corresponding to the range of indexes to return for the given pagination
+    parameters.
+    """
+    assert isinstance(page, int) and isinstance(page_size, int)
+    assert page > 0 and page_size > 0
+    start_index = (page - 1) * page_size
+    end_index = start_index + page_size
+    return (start_index, end_index)
 
 
 class Server:
@@ -46,7 +59,7 @@ class Server:
         - data: the actual page of the dataset
         """
 
-        assert isinstance(index, type(page_size)) == int
+        assert isinstance(index, int) and isinstance(page_size, int)
         assert index >= 0 and page_size > 0
 
         dataset = self.indexed_dataset()

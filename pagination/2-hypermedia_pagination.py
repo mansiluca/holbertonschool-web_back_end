@@ -1,7 +1,19 @@
 #!/usr/bin/env python3
 import csv
 import math
-from typing import List
+from typing import List, Tuple
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """
+    Returns a tuple of size two containing a start index and an end index
+    corresponding to the range of indexes to return for the given pagination
+    parameters.
+    """
+    assert isinstance(page, int) and isinstance(page_size, int)
+    assert page > 0 and page_size > 0
+    start_index = (page - 1) * page_size
+    end_index = start_index + page_size
+    return (start_index, end_index)
 
 
 class Server:
@@ -26,7 +38,7 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Get a page of the dataset
         """
-        assert isinstance(page, type(page_size)) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         dataset = self.dataset()
