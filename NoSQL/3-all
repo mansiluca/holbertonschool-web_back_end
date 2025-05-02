@@ -1,0 +1,2 @@
+// This code is for MongoDB
+db.school.find()

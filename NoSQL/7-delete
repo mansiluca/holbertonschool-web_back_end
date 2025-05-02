@@ -1,0 +1,2 @@
+// la je sais Delete 
+db.school.deleteMany({name: 'Holberton school'})

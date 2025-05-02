@@ -1,0 +1,2 @@
+// jsp plus quoi mettre
+db.school.find({'name': 'Holberton school'})
