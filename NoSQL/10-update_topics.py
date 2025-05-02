@@ -2,6 +2,8 @@
 """
 Main file
 """
+import pymongo
+from typing import List
 
 
 def update_topics(mongo_collection, name, topics):
