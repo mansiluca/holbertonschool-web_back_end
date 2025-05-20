@@ -44,18 +44,14 @@ const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    try {
-      const databasePath = process.argv[2];
-      const message = 'This is the list of our students';
+    const databasePath = process.argv[2];
+    const message = 'This is the list of our students';
 
-      try {
-        const studentData = await countStudents(databasePath);
-        res.end(`${message}\n${studentData}`);
-      } catch (error) {
-        res.end(`${message}\n${error.message}`);
-      }
+    try {
+      const studentData = await countStudents(databasePath);
+      res.end(`${message}\n${studentData}`);
     } catch (error) {
-      res.end('This is the list of our students\nCannot load the database');
+      res.end(`${message}\n${error.message}`);
     }
   } else {
     res.statusCode = 404;
