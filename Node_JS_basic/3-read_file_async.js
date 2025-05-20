@@ -4,10 +4,15 @@ async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
 
+    const response = [];
+    let msg;
+
     const lines = data.split('\n').filter((line) => line.trim() !== '');
     const students = lines.slice(1);
 
-    console.log(`Number of students: ${students.length}`);
+    msg = `Number of students: ${students.length}`;
+    console.log(msg);
+    response.push(msg);
 
     const studentsByField = {};
 
@@ -24,10 +29,12 @@ async function countStudents(path) {
     });
 
     for (const [field, names] of Object.entries(studentsByField)) {
-      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
+      msg = `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`;
+      console.log(msg);
+      response.push(msg);
     }
 
-    return { totalStudents: students.length, studentsByField };
+    return response;
   } catch (error) {
     throw new Error('Cannot load the database');
   }
