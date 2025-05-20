@@ -19,11 +19,11 @@ function countStudents(path = pathdb) {
     console.log(`Number of students: ${studentsCount}`);
 
     const csStudents = students.filter((student) => student.field === 'CS');
-    const csFirstNames = csStudents.map((student) => student.firstname || student.firstName).join(', ');
+    const csFirstNames = csStudents.map((student) => student.firstname).join(', ');
     console.log(`Number of students in CS: ${csStudents.length}. List: ${csFirstNames}`);
 
     const sweStudents = students.filter((student) => student.field === 'SWE');
-    const sweFirstNames = sweStudents.map((student) => student.firstname || student.firstName).join(', ');
+    const sweFirstNames = sweStudents.map((student) => student.firstname).join(', ');
     console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweFirstNames}`);
     return students;
   } catch (error) {
