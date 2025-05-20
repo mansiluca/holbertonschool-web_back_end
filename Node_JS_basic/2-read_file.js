@@ -1,31 +1,33 @@
 const fs = require('fs');
 
-const pathdb = './database.csv';
-
-function countStudents(path = pathdb) {
+function countStudents(path) {
   try {
-    const data = fs.readFileSync(path, 'utf8');
+    const data = fs.readFile(path, 'utf8');
 
-    const lines = data.trim().split('\n');
-    const headers = lines[0].split(',');
-    const students = lines.slice(1).map((line) => {
-      const values = line.split(',');
-      return headers.reduce((student, header, index) => (
-        { ...student, [header]: values[index] }), {});
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const students = lines.slice(1);
+
+    console.log(`Number of students: ${students.length}`);
+
+    const studentsByField = {};
+
+    students.forEach((student) => {
+      const fields = student.split(',');
+      const firstName = fields[0];
+      const field = fields[3];
+
+      if (!studentsByField[field]) {
+        studentsByField[field] = [];
+      }
+
+      studentsByField[field].push(firstName);
     });
 
-    const studentsCount = students.length;
+    for (const [field, names] of Object.entries(studentsByField)) {
+      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
+    }
 
-    console.log(`Number of students: ${studentsCount}`);
-
-    const csStudents = students.filter((student) => student.field === 'CS');
-    const csFirstNames = csStudents.map((student) => student.firstname).join(', ');
-    console.log(`Number of students in CS: ${csStudents.length}. List: ${csFirstNames}`);
-
-    const sweStudents = students.filter((student) => student.field === 'SWE');
-    const sweFirstNames = sweStudents.map((student) => student.firstname).join(', ');
-    console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweFirstNames}`);
-    return students;
+    return { totalStudents: students.length, studentsByField };
   } catch (error) {
     throw new Error('Cannot load the database');
   }
